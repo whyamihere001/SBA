@@ -1,11 +1,15 @@
 #26/3/24 started working on this, created the file, did a little bit research
-# #17/4 research (used AI)
+#17/4 research (used AI)
 #18/4 research, found some useful libraries (used AI)
 #19/4 research, started ACTUALLY coding
 #*IMPORTANT* I ONLY USED AI FOR RESEARCH I DID NOT COPY AND PASTE
 #25/4 created the menu() fuction, not finished (definetly), but the base of it
 #26/4 developing the function add_guest()
 #28/4 what the fuck am i doing
+#10/5 yk what? json is stupid
+#11/5 i am too tired but remember, tmr i would fix the print guest function and make the load_json function
+
+import json
 
 guests = []
 def check_name(name):
@@ -45,7 +49,13 @@ def print_guest(guest_info):
         print("seats required:", guest_info["seats_required"])
         print("other guests:", guest_info["other_guests"])                
            
-                 
+def save(data, file_name):
+    file = open(file_name, "w")
+    json.dump(data, file)
+    file.close()
+
+def load_json()
+
 def add_guest():
     
         name = input("what is your name: ")
@@ -100,6 +110,11 @@ def add_guest():
                         return
                     else:
                         continue
+        file = open("guests.json", "r") #remember, file must be OPENED before loading the data inside it and printing it
+        saved = json.load(file)
+        file.close()
+
+        print(saved)
 
 def remove_main_guest():
     while True:
