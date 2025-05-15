@@ -22,7 +22,7 @@
         <mxCell id="PFMrr6YKj0DRXEgyiX6l-5" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="558" y="710" width="120" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="PFMrr6YKj0DRXEgyiX6l-6" value="if input &amp;lt;1 or&lt;div&gt;input &amp;gt; 4&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="PFMrr6YKj0DRXEgyiX6l-6" value="if input &amp;lt;1 or&lt;div&gt;input &amp;gt; 4 or input is not digit&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-50" y="710" width="120" height="90" as="geometry" />
         </mxCell>
         <mxCell id="PFMrr6YKj0DRXEgyiX6l-7" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
@@ -31,8 +31,8 @@
         <mxCell id="PFMrr6YKj0DRXEgyiX6l-8" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="760" y="710" width="120" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="PFMrr6YKj0DRXEgyiX6l-9" value="" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-75" y="830" width="170" height="110" as="geometry" />
+        <mxCell id="PFMrr6YKj0DRXEgyiX6l-9" value="output &quot;invalid, please try again&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-72.5" y="830" width="165" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
