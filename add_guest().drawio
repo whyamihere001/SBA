@@ -1,9 +1,78 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.0.6">
   <diagram name="第 1 页" id="mZ4dbqP6a9_s6yOYYXr8">
-    <mxGraphModel>
+    <mxGraphModel dx="946" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-1" target="qVkmd1OsK_N9cNhlPY4Y-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-1" value="add_guest() is called" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-3" target="qVkmd1OsK_N9cNhlPY4Y-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-3" value="user inputs name" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-4" target="qVkmd1OsK_N9cNhlPY4Y-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-4" value="name = check_name(name) to validate" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-5" target="qVkmd1OsK_N9cNhlPY4Y-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-5" value="user inputs phone_no" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-6" target="qVkmd1OsK_N9cNhlPY4Y-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-6" target="qVkmd1OsK_N9cNhlPY4Y-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-6" target="qVkmd1OsK_N9cNhlPY4Y-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-6" target="qVkmd1OsK_N9cNhlPY4Y-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-6" value="call check_phone()&lt;div&gt;call phone_exists()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-7" target="qVkmd1OsK_N9cNhlPY4Y-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-7" value="if phone_no is None" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="610" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-8" value="if phone_exists is True" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="610" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-10" value="output(&quot;please enter a valid phone number&quot;)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-11" value="output(&quot;Phone number cannot duplicate. Try again&quot;)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-12" target="qVkmd1OsK_N9cNhlPY4Y-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-12" value="else:" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="610" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-13" target="qVkmd1OsK_N9cNhlPY4Y-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-13" value="else:" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="610" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-14" value="user inputs grad_year" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
