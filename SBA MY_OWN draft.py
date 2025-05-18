@@ -17,6 +17,19 @@ import os
 
 guests = [] #this is the big guest list
 
+def load_json(file_name):
+    file_exists = os.path.exists(file_name)
+    if file_exists == True:
+        saved_guest_file = open(file_name, "r")
+        saved_data = json.load(saved_guest_file)
+        saved_guest_file.close()
+        return(saved_data)
+    else:
+        print("no guests saved file found. Do you want to register now?")
+        return []
+    
+guests = load_json("guests.json")
+
 def check_name(name):
     while True:
         if name.strip() == "":
@@ -62,23 +75,25 @@ def save_json(data, file_name):
     json.dump(data, file) #appearently, json is a library, and its similar to those teached in elective C chapter 7
     file.close()
 
-def file_exists(file_name):
-    file_exists = os.path.exists(file_name)
+#ok load_json and save_json I got the idea from chatgpt. Did not exactly copy and paste, but I learnt how to use it and got the main idea from chatgpt
 
-def load_json(file_name):
+def save_txt(data, file_name):
+    file = open(file_name, "w")
+    file.write(str(data) + "\n")
+    file.close()
+
+def load_txt(file_name):
     file_exists = os.path.exists(file_name)
     if file_exists == True:
         saved_guest_file = open(file_name, "r")
-        saved_data = json.load(saved_guest_file)
         saved_guest_file.close()
-        return(saved_data)
-    else:
-        print("no guests saved file found. Do you want to register now?")
-        return []
         
+    else:
+        print("no guest saved .txt file found. Do you want to register now?")
+        return []
 
 def add_guest():
-    
+
     name = input("what is your name: ")
     name = check_name(name)
         
@@ -138,18 +153,20 @@ def add_guest():
                         g["other_guests"].append(name) #this just to add the name to the other_guest[] under the name of the required main guest in guest_info
                     
                 print("this is the current guest list:")
-                print_guest(guest_info)
+                print_guest(guests)
 
-                finished = input("add more guests? type 'done' if finished")
+                finished = input("add more guests? type 'done' if finished ")
                 if finished.lower() == "done":
                     print("exiting...")
                     menu()
                     return
                 else:
                     continue
-    saved = save_json(guests, "guests.json")
-    print(saved)
 
+    with open("guests.json", "r") as f:
+        print(f.read())
+    with open("guests.txt", "r") as f:
+        print(f.read())
 
 def remove_main_guest():
     while True:
@@ -171,7 +188,7 @@ def remove_main_guest():
                         guests = guests.remove(g)
                 print(guests)
                 save_json(guests, "guests.json")
-                test = load_json("guest.json")
+                test = load_json("guests.json")
                 print(test)
             else:
                 continue
@@ -235,7 +252,7 @@ def menu(): #IMPORTANT!!!!!!!!!
         print("1 -add guests ")
         print("2 -remove guest s")
         print("3 -generate/ read the seating plan: ") 
-        print("4 -remove guest by phone number")
+        print("4 -search guest by phone number")
         print("5 -exit ")
         guest_input = (input("please type in the number: ")).strip()
         if guest_input.isdigit() == False: #for fxxk's sake......... pls remember isdigit()
