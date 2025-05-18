@@ -49,6 +49,9 @@
         <mxCell id="qVkmd1OsK_N9cNhlPY4Y-7" value="if phone_no is None" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="150" y="610" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-8" target="qVkmd1OsK_N9cNhlPY4Y-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="qVkmd1OsK_N9cNhlPY4Y-8" value="if phone_exists is True" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="600" y="610" width="80" height="80" as="geometry" />
         </mxCell>
@@ -70,8 +73,103 @@
         <mxCell id="qVkmd1OsK_N9cNhlPY4Y-13" value="else:" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="450" y="610" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-14" value="user inputs grad_year" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="qVkmd1OsK_N9cNhlPY4Y-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="880" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="260" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-14" target="qVkmd1OsK_N9cNhlPY4Y-31">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="810" />
+              <mxPoint x="387" y="810" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-14" target="qVkmd1OsK_N9cNhlPY4Y-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="414" y="810" />
+              <mxPoint x="480" y="810" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-14" value="user inputs grad_year" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=16;" vertex="1" parent="1">
           <mxGeometry x="354" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-31" value="if grad_year is NOT an integer or NOT between 1973 and 2025" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="304" y="810" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-33" target="qVkmd1OsK_N9cNhlPY4Y-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-33" value="else:" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="820" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-34">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-34" value="output(&quot;invalid. Please try again&quot;)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-38" target="qVkmd1OsK_N9cNhlPY4Y-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-38" value="break inner loop" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.683;entryY=0.058;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-31" target="qVkmd1OsK_N9cNhlPY4Y-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-47" target="qVkmd1OsK_N9cNhlPY4Y-49">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-47" value="&lt;div&gt;&amp;nbsp;create guest_info dictionary&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div&gt;guest_info = {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;name&quot;: name,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;phone_number&quot;: phone_no,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;graduation_year&quot;: grad_year,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;seats_required&quot;: 1,&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;other_guests&quot;: []&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="280.5" y="1020" width="267" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-49" target="qVkmd1OsK_N9cNhlPY4Y-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-49" value="append the guest information into guest_info dictionary" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="1190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-51" target="qVkmd1OsK_N9cNhlPY4Y-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-51" value="output all the guest by calling print_guest()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="1280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-52" target="qVkmd1OsK_N9cNhlPY4Y-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-52" target="qVkmd1OsK_N9cNhlPY4Y-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-52" value="finished = user input &quot;done&quot; if they want to add other guests orn nott" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="311" y="1380" width="206" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-53" target="qVkmd1OsK_N9cNhlPY4Y-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-53" value="if finished ==&amp;nbsp; &quot;done&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="274" y="1490" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qVkmd1OsK_N9cNhlPY4Y-54" target="qVkmd1OsK_N9cNhlPY4Y-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-54" value="else:" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1490" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-56" value="call menu()&lt;div&gt;break&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="254" y="1600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVkmd1OsK_N9cNhlPY4Y-59" value="go to second part of the flow chart" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1600" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
