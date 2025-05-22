@@ -15,7 +15,7 @@
 import json #yea i needed to save in json. CSV wouldnt work because it is in text form. Well technically it COULD work but i need to split it and re-format it back into dictionary and lists so its too much work. 
 import os
 
-guests = [] #this is the big guest list
+guests = {} #this is the big guest dictionary
 
 #IMPORTANT!! THIS IS THE ONLY PART OF MY CODE THAT DIRECTLY COMES FROM CHATGPT I DECLARE IT HERE (MAY FIX LATER)
 def load_json(filename):
@@ -25,20 +25,20 @@ def load_json(filename):
         if not content:
             # File is empty
             with open(filename, "w") as f:
-                f.write("[]")
-            return []
+                f.write("{}")
+            return {}
         try:
             return json.loads(content)
         except json.JSONDecodeError:
             # File is corrupted or not valid JSON
             with open(filename, "w") as f:
-                f.write("[]")
-            return []
+                f.write("{}")
+            return {}
     else:
         # File does not exist
         with open(filename, "w") as f:
-            f.write("[]")
-        return []
+            f.write("{}")
+        return {}
 
 def save_json(data, file_name):
     file = open(file_name, "w")
@@ -47,16 +47,13 @@ def save_json(data, file_name):
         
 guests = load_json("guests.json")
 table = load_json("table.json")
-fuck1 = load_json("fuck1.json")
 
 if table is None:
-    table = []
+    table = {}
 
 if guests is None:
-    guests = []
+    guests = {}
 
-if fuck1 is None:
-    fuck1 = []
 
 def check_name(name):
     while True:
@@ -83,20 +80,20 @@ def check_phone(phone_no):
             return None #yea I should have make a True/ False tag here but i am too lazy to change it
         
 def phone_exists(phone_no):
-    for g in guests:
-        if g["phone_number"] == phone_no:
-            return True
-    return False #else: return False no work. It returns False everytime unless the phone no thats duplicated exists at the last index of the array.
-
+    if phone_no in guests:
+        return True
+    else:
+        return False
+    
 
 def print_guest(guests):
-    for g in guests:
-        print("name:", g["name"])
-        print("phone number:", g["phone_number"])
-        print("graduation year", g["graduation_year"])
-        print("seats required:", g["seats_required"])
-        print("other guests:", g["other_guests"])
-        print("----------------------------")                
+    for phone_no in guests:
+        print("name:", guests[phone_no]["name"])
+        print("phone number: ", phone_no)
+        print("graduation year:", guests[phone_no]["graduation_year"])
+        print("seats required:", guests[phone_no]["seats_required"])
+        print("other guests:", guests[phone_no]["other_guests"])
+        print("----------------------------------------------------")                
 
 
 #ok load_json and save_json I got the idea from chatgpt. Did not exactly copy and paste, but I learnt how to use it and got the main idea from chatgpt
@@ -153,18 +150,16 @@ def add_guest():
             
         #in case you cant see it, ckc, phone number is the "primary key" for this mini dictionary "database"
                     
-        guest_info = {
-                    "name": name,
-                    "phone_number": phone_no,
-                    "graduation_year": grad_year,
-                    "seats_required": 1,  
-                    "other_guests": []
-                }
+        guest_info = {   #guest info is a dummy variable for temperary use
+            "name": name,
+            "graduation_year": grad_year,
+            "seats_required": 1,
+            "other_guests": []
+        }
             
-        guests.append(guest_info)
-        print("these are guests info that are currently registered: ")
-
-        print_guest(guests)
+        guests[phone_no] = guest_info
+        print("These are the guests currently registered:")
+        print_guest(guests)       
             
         finished = input("add another guest? type 'done' if you are finished: ")
         if finished.lower() == "done":
@@ -174,15 +169,11 @@ def add_guest():
             break
         else:
             while True:
-                name = input("pls enter the name: ")
-                name = check_name(name)
+                other_guests_name = input("pls enter the name: ")
+                other_guests_name = check_name(other_guests_name)
 
-                for g in guests: # yes, i know this part is weird, why do i have to define another dictionary "g"?
-                    if g["phone_number"] == phone_no: #this to loop through guests[] until it get to the guy with the specific phone number (loop until find the primary key)
-                        g["seats_required"] = g["seats_required"] + 1 #to prevent users from entering invalid stuff, I would count the seats for them
-                        g["other_guests"].append(name) #this just to add the name to the other_guest[] under the name of the required main guest in guest_info
-                print("this is the current guest list:")
-                print_guest(guests)
+                guests[phone_no]["other_guests"].append(other_guests_name)
+                guests[phone_no]["seats_required"] = guests[phone_no]["seats_required"] + 1
 
                 finished = input("add more other guests? type 'done' if finished ")
                 if finished.lower() == "done":
@@ -198,9 +189,9 @@ def add_guest():
 
 
 def remove_main_guest():
+    global guests
+    guests = load_json("guests.json")
     while True:
-        global guests
-        guests = load_json("guests.json")
         phone_no = input("pls input the phone number of main guest that you want to remove: ")
         phone_no = check_phone(phone_no)
         if phone_no is None:
@@ -212,12 +203,9 @@ def remove_main_guest():
         else:
             confirm = input("are you sure you want to remove this main guest? That means removing every other guests under the name of this main guest. (Y/N)").strip()
             if confirm.upper() == "Y":
-                for g in guests:
-                    if phone_no == g["phone_number"]:
-                        guests.remove(g)
-                save_txt(guests, "guests.txt")
+                del guests[phone_no]
                 save_json(guests, "guests.json")
-                return
+                save_txt(guests, "guests.txt")
             else:
                 continue
         
@@ -235,20 +223,22 @@ def remove_other_guest():
             print("there is no main guests registered under this phone number. Please Try again. ")
             continue
         else:
-            other_guest = input("please enter the name of the other guest you want to remove: ")
-            for g in guests:
-                if phone_no == g["phone_number"]:
-                    if other_guest in g["other_guests"]: #check is other_guest is in other_guest[]
-                        g["other_guests"].remove(other_guest)
-                    else:
-                        print("guest named", other_guest, "doesnt exist, please try again")
-                        continue
-                    g["seats_required"] = g["seats_required"] - 1
-                    print("successfully removed the other guest")
-                    print(guests)
-                    save_txt(guests, "guests.txt")
-                    save_json(guests, "guests.json")
-                    menu()
+            while True:
+                other_guests = input("please enter the name of the other guest you want to remove: ")
+                other_guests = check_name(other_guests)
+                if phone_no in guests:
+                        if other_guests in guests[phone_no]["other_guests"]:
+                            guests[phone_no]["other_guests"].remove(other_guests)
+                            guests[phone_no]["seats_required"] = guests[phone_no]["seats_required"] - 1
+                            save_json(guests, "guests.json")
+                            save_txt(guests, "guests.txt")
+                            menu()
+                            return
+                        else:
+                            print("the other guest you entered does not exist. Please try again")
+                            continue
+                            
+
 
 
 def remove_guest():
