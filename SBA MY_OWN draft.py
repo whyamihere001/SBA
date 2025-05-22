@@ -17,18 +17,46 @@ import os
 
 guests = [] #this is the big guest list
 
-def load_json(file_name):
-    file_exists = os.path.exists(file_name)
-    if file_exists == True:
-        saved_guest_file = open(file_name, "r")
-        saved_data = json.load(saved_guest_file)
-        saved_guest_file.close()
-        return(saved_data)
+#IMPORTANT!! THIS IS THE ONLY PART OF MY CODE THAT DIRECTLY COMES FROM CHATGPT I DECLARE IT HERE (MAY FIX LATER)
+def load_json(filename):
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            content = f.read().strip()
+        if not content:
+            # File is empty
+            with open(filename, "w") as f:
+                f.write("[]")
+            return []
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            # File is corrupted or not valid JSON
+            with open(filename, "w") as f:
+                f.write("[]")
+            return []
     else:
-        print("no guests saved file found. Do you want to register now?")
+        # File does not exist
+        with open(filename, "w") as f:
+            f.write("[]")
         return []
-    
+
+def save_json(data, file_name):
+    file = open(file_name, "w")
+    json.dump(data, file) #appearently, json is a library, and its similar to those teached in elective C chapter 7
+    file.close()
+        
 guests = load_json("guests.json")
+table = load_json("table.json")
+fuck1 = load_json("fuck1.json")
+
+if table is None:
+    table = []
+
+if guests is None:
+    guests = []
+
+if fuck1 is None:
+    fuck1 = []
 
 def check_name(name):
     while True:
@@ -69,11 +97,7 @@ def print_guest(guests):
         print("seats required:", g["seats_required"])
         print("other guests:", g["other_guests"])
         print("----------------------------")                
-           
-def save_json(data, file_name):
-    file = open(file_name, "w")
-    json.dump(data, file) #appearently, json is a library, and its similar to those teached in elective C chapter 7
-    file.close()
+
 
 #ok load_json and save_json I got the idea from chatgpt. Did not exactly copy and paste, but I learnt how to use it and got the main idea from chatgpt
 
@@ -92,7 +116,11 @@ def load_txt(file_name):
         print("no guest saved .txt file found. Do you want to register now?")
         return []
 
+
+
 def add_guest():
+    global guests
+    guests = load_json("guests.json")
 
     name = input("what is your name: ")
     name = check_name(name)
@@ -140,6 +168,8 @@ def add_guest():
             
         finished = input("add another guest? type 'done' if you are finished: ")
         if finished.lower() == "done":
+            save_json(guests, "guests.json")
+            save_txt(guests, "guests.txt")
             print("exiting...")
             break
         else:
@@ -151,22 +181,21 @@ def add_guest():
                     if g["phone_number"] == phone_no: #this to loop through guests[] until it get to the guy with the specific phone number (loop until find the primary key)
                         g["seats_required"] = g["seats_required"] + 1 #to prevent users from entering invalid stuff, I would count the seats for them
                         g["other_guests"].append(name) #this just to add the name to the other_guest[] under the name of the required main guest in guest_info
-                    
                 print("this is the current guest list:")
                 print_guest(guests)
 
-                finished = input("add more guests? type 'done' if finished ")
+                finished = input("add more other guests? type 'done' if finished ")
                 if finished.lower() == "done":
+                    save_json(guests, "guests.json")
+                    save_txt(guests, "guests.txt")
                     print("exiting...")
                     menu()
                     return
                 else:
                     continue
+    save_json(guests, "guests.json")
+    save_txt(guests, "guests.txt")
 
-    with open("guests.json", "r") as f:
-        print(f.read())
-    with open("guests.txt", "r") as f:
-        print(f.read())
 
 def remove_main_guest():
     while True:
@@ -185,8 +214,9 @@ def remove_main_guest():
             if confirm.upper() == "Y":
                 for g in guests:
                     if phone_no == g["phone_number"]:
-                        guests = guests.remove(g)
+                        guests.remove(g)
                 print(guests)
+                save_txt(guests, "guests.txt")
                 save_json(guests, "guests.json")
                 test = load_json("guests.json")
                 print(test)
@@ -204,20 +234,23 @@ def remove_other_guest():
             menu()
             return
         elif phone_exists(phone_no) == False:
-            print("there is no main guests registered under this name. Please Try again. ")
+            print("there is no main guests registered under this phone number. Please Try again. ")
             continue
         else:
             other_guest = input("pls enter the name of the other guest you want to remove: ")
             for g in guests:
                 if phone_no == g["phone_number"]:
-                    if other_guest == g["other_guests"]:
-                        g = g.remove(other_guest)
-                        print(g)
-                        guests = guests.append(g)
-                        print(guests)
-                        print("remove successful")
-                        save_json(guests, "guests.json")
-
+                    if other_guest in g["other_guests"]: #check is other_guest is in other_guest[]
+                        g["other_guests"].remove(other_guest)
+                    else:
+                        print("guest named", other_guest, "doesnt exist, please try again")
+                        continue
+                    g["seats_required"] = g["seats_required"] - 1
+                    print("successfully removed the other guest")
+                    print(guests)
+                    save_txt(guests, "guests.txt")
+                    save_json(guests, "guests.json")
+                    menu()
 
 
 def remove_guest():
@@ -238,14 +271,32 @@ def remove_guest():
             continue        
 
 def seating_plan_generate():
-    while True:
-        global guests
-        guests = load_json("guests.json")
-        table = 1
-        seat = 1
+    guests = load_json("guests.json")
+    small_table = load_json("small_table.json")
+    large_table = load_json("large_table.json")
+    group_size = []
+    for g in guests:
+        group_size.append(g["seats_required"])
+        print(group_size)
+    small_table = {
+        "min_size": 4,
+        "max_size": 6,
+        "table_guests": []
+
+    }
+    large_table = {
+        "min_size": 10,
+        "max_size": 12,
+        "table_guests": []
+    }
+    for i in range(0, len(group_size)):
+        if group_size[i] >= 1:
+            large_table["table_guests"].append(guests["main_guest"]) #for testing
+            large_table["table_guests"].append(guests["other_guest"])
+            save_json("table.json")
+
         
 
-                                                         
 def menu(): #IMPORTANT!!!!!!!!!    
     while True:
         print("Welcome to Tl dinner. Please type in the corresponding number to the funcions")
@@ -257,16 +308,18 @@ def menu(): #IMPORTANT!!!!!!!!!
         guest_input = (input("please type in the number: ")).strip()
         if guest_input.isdigit() == False: #for fxxk's sake......... pls remember isdigit()
             print("please enter an integer")
+            continue
         else:
             guest_input = int(guest_input)
             if guest_input > 4 or guest_input < 1:
                 print("invalid. Please enter a number between 1 and 4")
+                continue
             elif guest_input == 1:
                 add_guest()
             elif guest_input == 2:
                 remove_guest()
             elif guest_input == 3:
-                print("generate seating plan")
+                seating_plan_generate()
             elif guest_input == 4:
                 print("finding guest")
             else:
