@@ -18,38 +18,42 @@ import os
 guests = {} #this is the big guest dictionary
 
 #IMPORTANT!! THIS IS THE ONLY PART OF MY CODE THAT DIRECTLY COMES FROM CHATGPT I DECLARE IT HERE (MAY FIX LATER)
-def load_json(filename):
+def load_json(filename, default=None):
+    """Loads JSON from file, if fails returns default (dict or list)."""
+    if default is None:
+        default = {}  # Default to dict if not specified
+
     if os.path.exists(filename):
         with open(filename, "r") as f:
             content = f.read().strip()
         if not content:
             # File is empty
             with open(filename, "w") as f:
-                f.write("{}")
-            return {}
+                f.write(json.dumps(default))
+            return default
         try:
             return json.loads(content)
         except json.JSONDecodeError:
             # File is corrupted or not valid JSON
             with open(filename, "w") as f:
-                f.write("{}")
-            return {}
+                f.write(json.dumps(default))
+            return default
     else:
         # File does not exist
         with open(filename, "w") as f:
-            f.write("{}")
-        return {}
+            f.write(json.dumps(default))
+        return default
 
 def save_json(data, file_name):
     file = open(file_name, "w")
     json.dump(data, file) #appearently, json is a library, and its similar to those teached in elective C chapter 7
     file.close()
         
-guests = load_json("guests.json")
-table = load_json("table.json")
+guests = load_json("guests.json", default={})
+tables = load_json("tables.json", default=[])
 
-if table is None:
-    table = {}
+if tables is None:
+    tables = []
 
 if guests is None:
     guests = {}
@@ -117,7 +121,7 @@ def load_txt(file_name):
 
 def add_guest():
     global guests
-    guests = load_json("guests.json")
+    guests = load_json("guests.json", default={})
 
     name = input("what is your name: ")
     name = check_name(name)
@@ -150,7 +154,7 @@ def add_guest():
             
         #in case you cant see it, ckc, phone number is the "primary key" for this mini dictionary "database"
                     
-        guest_info = {   #guest info is a dummy variable for temperary use
+        guest_info = {   #guest_info is a dummy variable for temperary use
             "name": name,
             "graduation_year": grad_year,
             "seats_required": 1,
@@ -190,7 +194,7 @@ def add_guest():
 
 def remove_main_guest():
     global guests
-    guests = load_json("guests.json")
+    guests = load_json("guests.json", default={})
     while True:
         phone_no = input("pls input the phone number of main guest that you want to remove: ")
         phone_no = check_phone(phone_no)
@@ -213,7 +217,7 @@ def remove_main_guest():
 def remove_other_guest():
     while True:
         global guests
-        guests = load_json("guests.json")
+        guests = load_json("guests.json", default={})
         phone_no = input("pls input the phone number of main guest: ")
         check_phone(phone_no)
         if phone_no is None:
@@ -244,7 +248,7 @@ def remove_other_guest():
 def remove_guest():
     while True:
         print("these are the guests that are currently registered: ")
-        guests_registered = load_json("guests.json")
+        guests_registered = load_json("guests.json", default={})
         print(guests_registered)
         guest_type = input("press 1 if you want to remove main guest(s)\npress 2 if you want to remove other guest(s)\nor enter 'back' to go back to main menu\n")
         if guest_type.lower() == "back":
@@ -261,31 +265,23 @@ def remove_guest():
             continue        
 
 def seating_plan_generate():
-    guests = load_json("guests.json")
-    small_table = load_json("small_table.json")
-    large_table = load_json("large_table.json")
-    group_size = []
-    for g in guests:
-        group_size.append(g["seats_required"])
-        print(group_size)
-    small_table = {
-        "min_size": 4,
-        "max_size": 6,
-        "table_guests": []
+    guests = load_json("guests.json", default={})
+    tables = load_json("tables.json", default=[])
+    table_id = 0
 
+    table_info = {
+        "table_id": table_id,
+        "type": "big",
+        "min": 10,
+        "max": 12,
+        "seat_occupied": 0,
+        "guests_seated": {
+            "main_guests": [],
+            "other_guests": []
+        }    
     }
-    large_table = {
-        "min_size": 10,
-        "max_size": 12,
-        "table_guests": []
-    }
-    for i in range(0, len(group_size)):
-        if group_size[i] >= 1:
-            large_table["table_guests"].append(guests["main_guest"]) #for testing
-            large_table["table_guests"].append(guests["other_guest"])
-            save_json("table.json")
 
-        
+    tables[table_id] = table_info    
 
 def menu(): #IMPORTANT!!!!!!!!!    
     while True:
