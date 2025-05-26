@@ -290,9 +290,37 @@ def seating_plan_generate():
     tables = load_json("tables.json", default=[])
     table_id = 0
     remaining = count_seats()
-    small_max = None
-
+    small_min = 4
+    small_max = 6
     current_table = {
+        "table_id": table_id,
+        "type": "small",
+        "min": small_min,
+        "max": small_max,
+        "seats_occupied": 0,
+        "guests_seated": {
+            "main_guests": [],
+            "grad_year": [],
+            "other_guests": []
+        }
+    }
+    tables.append(current_table)
+
+    for g in guests:    
+        group_size = guests[g]["seats_required"]
+
+        if group_size > small_max:
+            print("go to big table")
+        elif (group_size + current_table["seats_occupied"]) < small_max:
+            current_table["guests_seated"]["main_guests"].append(g)
+            current_table["guests_seated"]["grad_year"].append(guests[g]["graduation_year"])
+            current_table["guests_seated"]["other_guests"].append(guests[g]["other_guests"])
+            current_table["seats_occupied"] = current_table["seats_occupied"] + group_size
+            table_id = table_id + 1
+            print(current_table)
+
+        else:
+            current_table = {
                 "table_id": table_id,
                 "type": "small",
                 "min": 4,
@@ -304,49 +332,41 @@ def seating_plan_generate():
                     "other_guests": []
                 }    
             }
-    
-    tables.append(current_table)
-    for table in tables:
-        if table["type"] == "small":
-            small_max = table["max"]
-            break 
-    
-    for g in guests:    
-        group_size = guests[g]["seats_required"]
-
-        if group_size > small_max:
-            print("go to big table")
-        elif (group_size + current_table["seats_occupied"]) < small_max:
+            tables.append(current_table)
             current_table["guests_seated"]["main_guests"].append(g)
-            
-
-        else:
+            current_table["guests_seated"]["grad_year"].append(guests[g]["graduation_year"])
+            current_table["guests_seated"]["other_guests"].append(guests[g]["other_guests"])
+            current_table["seats_occupied"] = current_table["seats_occupied"] + group_size
+            table_id = table_id + 1
+            print(current_table)
             print("go to current table")
 
             
 def search_guest():
-    geusts = load_json("guests.json", default={})
+    guests = load_json("guests.json", default={})
     phone_no = input("please input your phone number")
     phone_no = check_phone(phone_no)
-    if phone_no in guests:
-        print(guests[phone_no]["name"])
-        print(guests[phone_no]["graduation_year"])
-        print(guests[phone_no]["seats_required"])
-        print(guests[phone_no]["other_guests"])
-        phone_no = input("would you like to search for another guest using phone number? input the phone number or enter 'back' to go back to main menu")
-        if phone_no.lower() == "back":
-            menu()
-            return
+    while True:
+        if phone_no in guests:   #O(1) time complexity
+            print(guests[phone_no]["name"])
+            print(guests[phone_no]["graduation_year"])
+            print(guests[phone_no]["seats_required"])
+            print(guests[phone_no]["other_guests"])
+            phone_no = input("would you like to search for another guest using phone number? input the phone number or enter 'back' to go back to main menu: ")
+            if phone_no.lower() == "back":
+                menu()
+                return
+            else:
+                phone_no = check_phone(phone_no)
+                continue
         else:
-            phone_no = check_phone(phone_no)
-    else:
-        phone_no = input("no guest is registered under this phone number, please enter another phone number or type 'back' to go back to main menu")
-        if phone_no.lower() == "back":
-            menu()
-            return
-        else:
-            phone_no = check_phone(phone_no)
-
+            phone_no = input("no guest is registered under this phone number, please enter another phone number or type 'back' to go back to main menu: ")
+            if phone_no.lower() == "back":
+                menu()
+                return
+            else:
+                phone_no = check_phone(phone_no)
+                continue
             
 
 def menu(): #IMPORTANT!!!!!!!!!    
