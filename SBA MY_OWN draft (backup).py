@@ -318,11 +318,34 @@ def seating_plan_generate():
             print("go to big table")
         elif (group_size + current_table["seats_occupied"]) < small_max:
             current_table["guests_seated"]["main_guests"].append(g)
+            
 
         else:
             print("go to current table")
 
             
+def search_guest():
+    geusts = load_json("guests.json", default={})
+    phone_no = input("please input your phone number")
+    phone_no = check_phone(phone_no)
+    if phone_no in guests:
+        print(guests[phone_no]["name"])
+        print(guests[phone_no]["graduation_year"])
+        print(guests[phone_no]["seats_required"])
+        print(guests[phone_no]["other_guests"])
+        phone_no = input("would you like to search for another guest using phone number? input the phone number or enter 'back' to go back to main menu")
+        if phone_no.lower() == "back":
+            menu()
+            return
+        else:
+            phone_no = check_phone(phone_no)
+    else:
+        phone_no = input("no guest is registered under this phone number, please enter another phone number or type 'back' to go back to main menu")
+        if phone_no.lower() == "back":
+            menu()
+            return
+        else:
+            phone_no = check_phone(phone_no)
 
             
 
@@ -350,7 +373,7 @@ def menu(): #IMPORTANT!!!!!!!!!
             elif guest_input == 3:
                 seating_plan_generate()
             elif guest_input == 4:
-                print("finding guest")
+                search_guest()
             else:
                 print("are you sure you want to leave (Y/N)")
                 confirmation = input()
