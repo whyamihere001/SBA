@@ -55,7 +55,7 @@
         <mxCell id="yaqC6pamsBSzYDS0XfXJ-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="yaqC6pamsBSzYDS0XfXJ-11" target="yaqC6pamsBSzYDS0XfXJ-29">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="yaqC6pamsBSzYDS0XfXJ-11" value="guest info:&lt;div&gt;name: &quot;Peter Chueng&quot;&lt;/div&gt;&lt;div&gt;graduation_year: 1979&lt;/div&gt;&lt;div&gt;seats_required: 1&lt;/div&gt;&lt;div&gt;other_guests: [list]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="yaqC6pamsBSzYDS0XfXJ-11" value="guest info:&lt;div&gt;name: &quot;Peter Chueng&quot;&lt;/div&gt;&lt;div&gt;graduation_year: 2022&lt;/div&gt;&lt;div&gt;seats_required: 1&lt;/div&gt;&lt;div&gt;other_guests: [list]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="310" y="690" width="130" height="95" as="geometry" />
         </mxCell>
         <mxCell id="yaqC6pamsBSzYDS0XfXJ-23" value="&quot;Bob&quot;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
