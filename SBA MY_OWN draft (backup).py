@@ -292,7 +292,10 @@ def seating_plan_generate():
     remaining = count_seats()
     small_min = 4
     small_max = 6
-    current_table = {
+    big_min = 10
+    big_max = 12
+
+    current_table = {       #would be reassigned to big table or small table depending on how big the guest group is
         "table_id": table_id,
         "type": "small",
         "min": small_min,
@@ -311,6 +314,26 @@ def seating_plan_generate():
 
         if group_size > small_max:
             print("go to big table")
+            current_table = {
+                "table_id": table_id,
+                "type": "small",
+                "min": big_min,
+                "max": big_max,
+                "seats_occupied": 0,
+                "guests_seated": {
+                    "main_guests": [],
+                    "grad_year": [],
+                    "other_guests": []
+                }
+            }
+            tables.append(current_table)
+            current_table["guests_seated"]["main_guests"].append(g)
+            current_table["guests_seated"]["grad_year"].append(guests[g]["graduation_year"])
+            current_table["guests_seated"]["other_guests"].append(guests[g]["other_guests"])
+            current_table["seats_occupied"] = current_table["seats_occupied"] + group_size
+            table_id = table_id + 1
+            print(current_table)
+
         elif (group_size + current_table["seats_occupied"]) < small_max:
             current_table["guests_seated"]["main_guests"].append(g)
             current_table["guests_seated"]["grad_year"].append(guests[g]["graduation_year"])
@@ -401,4 +424,3 @@ def menu(): #IMPORTANT!!!!!!!!!
                     break
     return
 menu()
-
